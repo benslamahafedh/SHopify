@@ -1,7 +1,14 @@
 {
   "sections": {
+    "test_section": {
+      "type": "custom-test",
+      "settings": {
+        "title": "Test Section",
+        "description": "This is a test to see if sections work"
+      }
+    },
     "droit_hero": {
-      "type": "droit-etrangers-hero",
+      "type": "custom-foreigners-hero",
       "settings": {
         "title": "Accompagnement Administratif",
         "subtitle": "Droit des étrangers",
@@ -13,7 +20,7 @@
       }
     },
     "droit_services": {
-      "type": "droit-etrangers-services",
+      "type": "custom-administrative-services",
       "settings": {
         "title": "Nos Services Administratifs",
         "subtitle": "Nous vous assistons dans la constitution, la numérisation et la transmission de vos dossiers auprès des autorités compétentes (préfecture, ANEF, France-Visas, etc.)."
@@ -52,7 +59,7 @@
       }
     },
     "droit_legal": {
-      "type": "droit-etrangers-legal",
+      "type": "custom-legal-partnership",
       "settings": {
         "title": "Services Juridiques Partenaires",
         "subtitle": "Pour les aspects juridiques complexes, nous collaborons avec des avocats spécialisés en droit des étrangers.",
@@ -104,6 +111,7 @@
     }
   },
   "order": [
+    "test_section",
     "droit_hero",
     "droit_services", 
     "droit_legal",
