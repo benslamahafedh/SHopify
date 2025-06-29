@@ -5,7 +5,7 @@
       <div class="section-subtitle">{{ section.settings.subtitle }}</div>
     </div>
     
-    <div class="legal-partnership">
+    <div class="legal-partnership legal-partnership-hidden">
       <div class="partnership-content">
         <div class="partnership-icon">
           <i class="fas fa-balance-scale"></i>
@@ -16,7 +16,7 @@
         {% if section.blocks.size > 0 %}
           <div class="legal-services">
             {% for block in section.blocks %}
-              <div class="legal-service">
+              <div class="legal-service legal-service-hidden">
                 <div class="service-icon-small">
                   <i class="{{ block.settings.icon }}"></i>
                 </div>
@@ -55,7 +55,7 @@
 <style>
   .droit-legal {
     padding: 6rem 0 !important;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f8fafc 100%) !important;
+    background: linear-gradient(135deg, var(--light-bg) 0%, var(--gray-100) 50%, var(--light-bg) 100%) !important;
     position: relative !important;
   }
   .container {
@@ -71,27 +71,29 @@
     font-size: 3.5rem !important;
     font-weight: 700 !important;
     margin-bottom: 1.5rem !important;
-    color: #1f2937 !important;
-    background: linear-gradient(135deg, #1f2937 0%, #667eea 100%) !important;
+    color: var(--text-primary) !important;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
   }
   .section-subtitle {
     font-size: 1.2rem !important;
-    color: #6b7280 !important;
+    color: var(--text-secondary) !important;
     max-width: 600px !important;
     margin: 0 auto !important;
     line-height: 1.7 !important;
   }
   .legal-partnership {
-    background: #ffffff !important;
+    background: var(--white) !important;
     border-radius: 24px !important;
     padding: 3rem !important;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1) !important;
-    border: 1px solid rgba(102, 126, 234, 0.1) !important;
+    border: 1px solid rgba(37, 99, 235, 0.1) !important;
     position: relative !important;
     overflow: hidden !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .legal-partnership::before {
     content: '';
@@ -100,7 +102,7 @@
     left: 0 !important;
     right: 0 !important;
     height: 6px !important;
-    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    background: var(--gradient-primary) !important;
   }
   .partnership-content {
     text-align: center !important;
@@ -108,25 +110,25 @@
   .partnership-icon {
     width: 100px !important;
     height: 100px !important;
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    background: var(--gradient-primary) !important;
     border-radius: 24px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     margin: 0 auto 2rem !important;
-    color: #ffffff !important;
+    color: var(--white) !important;
     font-size: 2.5rem !important;
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3) !important;
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3) !important;
   }
   .partnership-content h3 {
     font-size: 2.2rem !important;
     font-weight: 600 !important;
-    color: #1f2937 !important;
+    color: var(--text-primary) !important;
     margin-bottom: 1.5rem !important;
   }
   .partnership-content > p {
     font-size: 1.1rem !important;
-    color: #6b7280 !important;
+    color: var(--text-secondary) !important;
     line-height: 1.7 !important;
     margin-bottom: 3rem !important;
     max-width: 800px !important;
@@ -141,46 +143,48 @@
     text-align: left !important;
   }
   .legal-service {
-    background: #f8fafc !important;
+    background: var(--light-bg) !important;
     border-radius: 16px !important;
     padding: 1.5rem !important;
-    border: 1px solid #e2e8f0 !important;
+    border: 1px solid var(--gray-200) !important;
     display: flex !important;
     align-items: flex-start !important;
     gap: 1rem !important;
     transition: all 0.3s ease !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .legal-service:hover {
-    background: #f1f5f9 !important;
-    border-color: #667eea !important;
+    background: var(--gray-50) !important;
+    border-color: var(--primary-color) !important;
     transform: translateY(-2px) !important;
   }
   .service-icon-small {
     width: 50px !important;
     height: 50px !important;
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    background: var(--gradient-primary) !important;
     border-radius: 12px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    color: #ffffff !important;
+    color: var(--white) !important;
     font-size: 1.2rem !important;
     flex-shrink: 0 !important;
   }
   .service-content h4 {
     font-size: 1.2rem !important;
     font-weight: 600 !important;
-    color: #1f2937 !important;
+    color: var(--text-primary) !important;
     margin-bottom: 0.5rem !important;
   }
   .service-content p {
-    color: #6b7280 !important;
+    color: var(--text-secondary) !important;
     line-height: 1.5 !important;
     margin: 0 !important;
   }
   .legal-note {
-    background: rgba(102, 126, 234, 0.1) !important;
-    border: 2px solid rgba(102, 126, 234, 0.2) !important;
+    background: rgba(37, 99, 235, 0.1) !important;
+    border: 2px solid rgba(37, 99, 235, 0.2) !important;
     border-radius: 16px !important;
     padding: 2rem !important;
     margin: 3rem 0 !important;
@@ -190,19 +194,19 @@
     text-align: left !important;
   }
   .legal-note i {
-    color: #667eea !important;
+    color: var(--primary-color) !important;
     font-size: 1.5rem !important;
     margin-top: 0.2rem !important;
     flex-shrink: 0 !important;
   }
   .legal-note strong {
-    color: #667eea !important;
+    color: var(--primary-color) !important;
     font-size: 1.1rem !important;
     display: block !important;
     margin-bottom: 0.5rem !important;
   }
   .legal-note p {
-    color: #374151 !important;
+    color: var(--text-primary) !important;
     line-height: 1.6 !important;
     margin: 0 !important;
   }
@@ -210,8 +214,8 @@
     margin-top: 2rem !important;
   }
   .legal-button {
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
-    color: #ffffff !important;
+    background: var(--gradient-primary) !important;
+    color: var(--white) !important;
     padding: 1.2rem 2.5rem !important;
     border-radius: 50px !important;
     text-decoration: none !important;
@@ -219,13 +223,34 @@
     display: inline-flex !important;
     align-items: center !important;
     gap: 0.5rem !important;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3) !important;
     transition: all 0.3s ease !important;
   }
   .legal-button:hover {
     transform: translateY(-3px) !important;
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4) !important;
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4) !important;
   }
+  
+  /* Animation classes */
+  .legal-partnership-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .legal-partnership-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  .legal-service-hidden {
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .legal-service-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
   @media (max-width: 768px) {
     .legal-services {
       grid-template-columns: 1fr !important;
@@ -239,9 +264,41 @@
   }
 </style>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const partnership = document.querySelector('.legal-partnership-hidden');
+    const services = document.querySelectorAll('.legal-service-hidden');
+    
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      
+      // Animate partnership container
+      if (partnership) {
+        const partnershipTop = partnership.getBoundingClientRect().top;
+        if (partnershipTop < triggerBottom) {
+          partnership.classList.add('legal-partnership-visible');
+        }
+      }
+      
+      // Animate services with stagger
+      services.forEach((service, index) => {
+        const serviceTop = service.getBoundingClientRect().top;
+        if (serviceTop < triggerBottom) {
+          setTimeout(() => {
+            service.classList.add('legal-service-visible');
+          }, index * 150); // Stagger animation
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  });
+</script>
+
 {% schema %}
 {
-  "name": "Droit Étrangers Legal",
+  "name": "Droit Étrangers - Legal",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -322,7 +379,8 @@
   ],
   "presets": [
     {
-      "name": "Droit Étrangers Legal",
+      "name": "Droit Étrangers - Legal",
+      "category": "Custom",
       "blocks": [
         {
           "type": "legal_service",

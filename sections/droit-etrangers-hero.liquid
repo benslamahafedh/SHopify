@@ -1,11 +1,11 @@
 <section id="droit-hero" class="droit-hero">
   <div class="hero-container">
-    <h1>{{ section.settings.title }}</h1>
-    <div class="hero-subtitle">{{ section.settings.subtitle }}</div>
+    <h1 class="hero-title-hidden">{{ section.settings.title }}</h1>
+    <div class="hero-subtitle-hidden">{{ section.settings.subtitle }}</div>
     {% if section.settings.description != blank %}
-      <div class="hero-description">{{ section.settings.description }}</div>
+      <div class="hero-description-hidden">{{ section.settings.description }}</div>
     {% endif %}
-    <div class="hero-cta">
+    <div class="hero-cta-hidden">
       {% if section.settings.primary_button_label != blank %}
         <a href="{{ section.settings.primary_button_link }}" class="btn-primary">
           <i class="fas fa-gavel"></i>
@@ -24,7 +24,7 @@
 
 <style>
   .droit-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
     min-height: 60vh !important;
     display: flex !important;
     align-items: center !important;
@@ -55,10 +55,12 @@
   .droit-hero h1 {
     font-size: 4rem !important;
     font-weight: 700 !important;
-    color: #ffffff !important;
+    color: var(--white) !important;
     margin-bottom: 1.5rem !important;
     line-height: 1.1 !important;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .hero-subtitle {
     font-size: 1.4rem !important;
@@ -69,6 +71,8 @@
     margin-right: auto !important;
     line-height: 1.6 !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .hero-description {
     font-size: 1.1rem !important;
@@ -78,12 +82,16 @@
     margin-left: auto !important;
     margin-right: auto !important;
     line-height: 1.7 !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .hero-cta {
     display: flex !important;
     gap: 1.5rem !important;
     justify-content: center !important;
     flex-wrap: wrap !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .btn-primary, .btn-secondary {
     padding: 1.2rem 2.5rem !important;
@@ -96,13 +104,13 @@
     gap: 0.5rem !important;
   }
   .btn-primary {
-    background: #ffffff !important;
-    color: #667eea !important;
+    background: var(--white) !important;
+    color: var(--primary-color) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
   }
   .btn-secondary {
     background: rgba(255, 255, 255, 0.1) !important;
-    color: #ffffff !important;
+    color: var(--white) !important;
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
     backdrop-filter: blur(10px) !important;
   }
@@ -111,11 +119,38 @@
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
   }
   .btn-secondary:hover {
-    background: #ffffff !important;
-    color: #667eea !important;
-    border-color: #ffffff !important;
+    background: var(--white) !important;
+    color: var(--primary-color) !important;
+    border-color: var(--white) !important;
     transform: translateY(-3px) scale(1.02) !important;
   }
+  
+  /* Animation classes */
+  .hero-title-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .hero-subtitle-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s !important;
+  }
+  .hero-description-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s !important;
+  }
+  .hero-cta-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s !important;
+  }
+  .hero-title-visible, .hero-subtitle-visible, .hero-description-visible, .hero-cta-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
   @media (max-width: 768px) {
     .droit-hero h1 {
       font-size: 2.5rem !important;
@@ -123,12 +158,43 @@
     .hero-subtitle {
       font-size: 1.2rem !important;
     }
+    .hero-cta {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
   }
 </style>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const heroElements = document.querySelectorAll('.hero-title-hidden, .hero-subtitle-hidden, .hero-description-hidden, .hero-cta-hidden');
+    
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      heroElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < triggerBottom) {
+          if (element.classList.contains('hero-title-hidden')) {
+            element.classList.add('hero-title-visible');
+          } else if (element.classList.contains('hero-subtitle-hidden')) {
+            element.classList.add('hero-subtitle-visible');
+          } else if (element.classList.contains('hero-description-hidden')) {
+            element.classList.add('hero-description-visible');
+          } else if (element.classList.contains('hero-cta-hidden')) {
+            element.classList.add('hero-cta-visible');
+          }
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Trigger on load
+  });
+</script>
+
 {% schema %}
 {
-  "name": "Droit Étrangers Hero",
+  "name": "Droit Étrangers - Hero",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -177,7 +243,8 @@
   ],
   "presets": [
     {
-      "name": "Droit Étrangers Hero"
+      "name": "Droit Étrangers - Hero",
+      "category": "Custom"
     }
   ]
 }
