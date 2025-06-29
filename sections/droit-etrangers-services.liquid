@@ -1,0 +1,288 @@
+<section id="droit-services" class="droit-services">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <div class="section-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="services-grid">
+      {% for block in section.blocks %}
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="{{ block.settings.icon }}"></i>
+          </div>
+          <div class="service-title">{{ block.settings.title }}</div>
+          <div class="service-description">{{ block.settings.description }}</div>
+          {% if block.settings.features != blank %}
+            {% assign features_array = block.settings.features | split: '\n' %}
+            <ul class="service-features">
+              {% for feature in features_array %}
+                {% unless feature == blank %}
+                  <li>{{ feature }}</li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if block.settings.note != blank %}
+            <div class="service-note">
+              <i class="fas fa-info-circle"></i>
+              {{ block.settings.note }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .droit-services {
+    padding: 6rem 0 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .droit-services::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+  }
+  .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  .section-header {
+    text-align: center !important;
+    margin-bottom: 5rem !important;
+  }
+  .section-title {
+    font-size: 4rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    color: #1f2937 !important;
+    background: linear-gradient(135deg, #1f2937 0%, #667eea 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  .section-subtitle {
+    font-size: 1.2rem !important;
+    color: #6b7280 !important;
+    max-width: 700px !important;
+    margin: 0 auto !important;
+    line-height: 1.7 !important;
+  }
+  .services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    gap: 2.5rem !important;
+  }
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+    .section-title {
+      font-size: 2.5rem !important;
+    }
+  }
+  .service-card {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    padding: 2.5rem !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border: 1px solid rgba(102, 126, 234, 0.1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    transform: scaleX(0) !important;
+    transform-origin: left !important;
+    transition: transform 0.4s ease !important;
+  }
+  .service-card:hover::before {
+    transform: scaleX(1) !important;
+  }
+  .service-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 25px 60px rgba(102, 126, 234, 0.15) !important;
+    border-color: rgba(102, 126, 234, 0.2) !important;
+  }
+  .service-icon {
+    width: 80px !important;
+    height: 80px !important;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 2rem !important;
+    color: #ffffff !important;
+    font-size: 1.8rem !important;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3) !important;
+    transition: all 0.3s ease !important;
+  }
+  .service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg) !important;
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4) !important;
+  }
+  .service-title {
+    font-size: 1.7rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    color: #1f2937 !important;
+  }
+  .service-description {
+    color: #6b7280 !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.6 !important;
+  }
+  .service-features {
+    list-style: none !important;
+    margin-bottom: 1.5rem !important;
+    padding: 0 !important;
+  }
+  .service-features li {
+    padding: 0.4rem 0 !important;
+    color: #6b7280 !important;
+    position: relative !important;
+    padding-left: 1.5rem !important;
+    line-height: 1.5 !important;
+  }
+  .service-features li::before {
+    content: '✓' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: #10b981 !important;
+    font-weight: 600 !important;
+  }
+  .service-note {
+    background: rgba(102, 126, 234, 0.1) !important;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+    border-radius: 10px !important;
+    padding: 1rem !important;
+    color: #667eea !important;
+    font-size: 0.9rem !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+  }
+  .service-note i {
+    margin-top: 0.1rem !important;
+    flex-shrink: 0 !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Droit Étrangers Services",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Nos Services Administratifs",
+      "label": "Titre de la section"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "default": "Nous vous assistons dans la constitution, la numérisation et la transmission de vos dossiers auprès des autorités compétentes.",
+      "label": "Sous-titre"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "default": "fas fa-file-alt",
+          "label": "Classe d'icône (FontAwesome)",
+          "info": "Ex: fas fa-file-alt, fas fa-user-tie, fas fa-clipboard-check"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Préparation des documents",
+          "label": "Titre du service"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "default": "Constitution complète de votre dossier selon les exigences officielles.",
+          "label": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Caractéristiques (une par ligne)",
+          "info": "Séparez chaque caractéristique par une nouvelle ligne"
+        },
+        {
+          "type": "textarea",
+          "id": "note",
+          "label": "Note importante (optionnelle)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Droit Étrangers Services",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "icon": "fas fa-file-alt",
+            "title": "Préparation des documents",
+            "description": "Constitution complète de votre dossier selon les listes officielles des préfectures.",
+            "features": "Vérification de complétude du dossier\nClassement et numérisation\nTraductions officielles si nécessaire\nSuivi de l'avancement",
+            "note": "Nous intervenons exclusivement sur les aspects logistiques et administratifs."
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "fas fa-laptop",
+            "title": "Aide aux démarches en ligne",
+            "description": "Assistance pour la création de comptes et les téléprocédures officielles.",
+            "features": "Création de comptes ANEF\nAccès à France-Visas\nPrise de rendez-vous préfecture\nSuivi des dossiers en ligne",
+            "note": "Accompagnement personnalisé pour toutes vos démarches numériques."
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "fas fa-exchange-alt",
+            "title": "Changement de statut",
+            "description": "Constitution de dossiers pour vos changements de situation administrative.",
+            "features": "Passage étudiant vers salarié\nVie privée et familiale\nRenouvellement de titres\nRegroupement familial",
+            "note": "Chaque situation est unique et nécessite une approche personnalisée."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 
