@@ -1,0 +1,124 @@
+<section id="testimonials" class="social-proof">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <div class="section-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="testimonials-grid">
+      {% for block in section.blocks %}
+        <div class="testimonial testimonial-animate">
+          <div class="testimonial-stars">
+            {% for i in (1..block.settings.stars) %}<i class="fa-solid fa-star"></i>{% endfor %}
+          </div>
+          <div class="testimonial-content">{{ block.settings.content }}</div>
+          <div class="testimonial-author">
+            {% if block.settings.avatar_url != blank %}
+              <span class="author-avatar"><img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.author }}"></span>
+            {% else %}
+              <span class="avatar-placeholder">{{ block.settings.author | slice: 0, 1 | upcase }}</span>
+            {% endif %}
+            <span class="author-info">
+              <h4>{{ block.settings.author }}</h4>
+              <span>{{ block.settings.role }}</span>
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <style>
+    .testimonial-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .testimonial-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var testimonials = document.querySelectorAll('#testimonials .testimonial-animate');
+      if (!testimonials.length) return;
+      var observer = new window.IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry, idx) {
+          if (entry.isIntersecting) {
+            setTimeout(function() {
+              entry.target.classList.add('visible');
+            }, idx * 120);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      testimonials.forEach(function(card) {
+        observer.observe(card);
+      });
+    });
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Témoignages de nos clients"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Ce que nos clients disent de nous."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Testimonial Content",
+          "default": "Service rapide, efficace et professionnel. Je recommande !"
+        },
+        {
+          "type": "number",
+          "id": "stars",
+          "label": "Stars (1-5)",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Jean Dupont"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Author Role/Company",
+          "default": "Directeur, Entreprise X"
+        },
+        {
+          "type": "url",
+          "id": "avatar_url",
+          "label": "Avatar Image URL",
+          "info": "Use a Shopify CDN URL or leave blank for a placeholder.",
+          "default": "/"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

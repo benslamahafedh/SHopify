@@ -1,0 +1,333 @@
+<section id="hero" class="hero">
+  <div class="hero-container">
+    <h1>{{ section.settings.title }}</h1>
+    <div class="hero-subtitle">{{ section.settings.subtitle }}</div>
+    <div class="hero-cta">
+      {% if section.settings.primary_button_label != blank %}
+        <a href="{{ section.settings.primary_button_link }}" class="btn-primary">
+          <i class="fas fa-phone"></i>
+          {{ section.settings.primary_button_label }}
+        </a>
+      {% endif %}
+      {% if section.settings.secondary_button_label != blank %}
+        <a href="{{ section.settings.secondary_button_link }}" class="btn-secondary">
+          <i class="fas fa-info-circle"></i>
+          {{ section.settings.secondary_button_label }}
+        </a>
+      {% endif %}
+    </div>
+    {% if section.blocks.size > 0 %}
+      <div class="hero-stats">
+        {% for block in section.blocks %}
+          <div class="stat-item">
+            <span class="stat-number">{{ block.settings.number }}</span>
+            {% if block.settings.suffix != blank %}<span class="stat-plus">{{ block.settings.suffix }}</span>{% endif %}
+            <div class="stat-label">{{ block.settings.label }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--gradient-hero) !important;
+    min-height: 70vh !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .hero::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+  }
+  .hero::after {
+    content: '';
+    position: absolute !important;
+    top: -50% !important;
+    left: -50% !important;
+    width: 200% !important;
+    height: 200% !important;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') !important;
+    animation: float 20s ease-in-out infinite !important;
+    pointer-events: none !important;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-1%, -0.5%) rotate(0.5deg); }
+    50% { transform: translate(1%, 1%) rotate(-0.5deg); }
+    75% { transform: translate(-0.5%, 0.5%) rotate(0.3deg); }
+  }
+  .hero-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    text-align: center !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  .hero h1 {
+    font-size: 4.5rem !important;
+    font-weight: 700 !important;
+    color: var(--white) !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.1 !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.9) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+  .hero-subtitle {
+    font-size: 1.5rem !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    margin-bottom: 2.5rem !important;
+    max-width: 800px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    line-height: 1.6 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  }
+  .hero-cta {
+    display: flex !important;
+    gap: 1.5rem !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 4rem !important;
+  }
+  .btn-primary {
+    background: var(--white) !important;
+    color: var(--primary-color) !important;
+    padding: 1.2rem 2.5rem !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+    transition: left 0.6s !important;
+  }
+  .btn-primary:hover::before {
+    left: 100% !important;
+  }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--white) !important;
+    padding: 1.2rem 2.5rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    backdrop-filter: blur(10px) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+  }
+  .btn-secondary:hover {
+    background: var(--white) !important;
+    color: var(--primary-color) !important;
+    border-color: var(--white) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2) !important;
+  }
+  .hero-stats {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 4rem !important;
+    flex-wrap: wrap !important;
+    margin-top: 2rem !important;
+  }
+  .stat-item {
+    text-align: center !important;
+    position: relative !important;
+    padding: 1.5rem !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    width: 250px !important;
+    transition: all 0.3s ease !important;
+  }
+  .stat-item:hover {
+    transform: translateY(-5px) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+  }
+  .stat-item::before {
+    content: '';
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06d6a0, #3b82f6) !important;
+    border-radius: 22px !important;
+    z-index: -1 !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+  }
+  .stat-item:hover::before {
+    opacity: 0.7 !important;
+  }
+  .stat-number {
+    font-size: 4rem !important;
+    font-weight: 700 !important;
+    display: inline !important;
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+  }
+  .stat-percent,
+  .stat-plus {
+    font-size: 3rem !important;
+    font-weight: 700 !important;
+    color: #fbbf24 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    margin-left: 0.2rem !important;
+  }
+  .stat-value {
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .stat-label {
+    font-size: 1.1rem !important;
+    opacity: 0.9 !important;
+    margin-top: 0.5rem !important;
+    font-weight: 500 !important;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) !important;
+  }
+</style>
+
+<script>
+// Counter animation for hero stats
+function animateCounter(el, endValue, duration = 1200) {
+  let start = 0;
+  const increment = endValue / (duration / 16);
+  function update() {
+    start += increment;
+    if (start < endValue) {
+      el.textContent = Math.floor(start);
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = endValue;
+    }
+  }
+  update();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.stat-number').forEach(function(el) {
+    const endValue = parseInt(el.textContent, 10);
+    if (!isNaN(endValue)) {
+      el.textContent = '0';
+      animateCounter(el, endValue);
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Custom Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Expert en Recouvrement de Créances & Services Administratifs"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Cabinet spécialisé en recouvrement amiable de créances, formalités juridiques et accompagnement administratif. Service professionnel, rigoureux et 100% conforme à la réglementation."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary Button Label",
+      "default": "Contactez-nous"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary Button Label",
+      "default": "En savoir plus"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link",
+      "default": "/"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "98"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix (e.g. %, +, etc.)",
+          "default": "%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Taux de réussite"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

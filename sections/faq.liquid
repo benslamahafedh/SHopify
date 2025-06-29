@@ -1,0 +1,93 @@
+<section id="faq" class="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <div class="section-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="faq-grid">
+      {% for block in section.blocks %}
+        <div class="faq-item{% if forloop.first %} active{% endif %}">
+          <div class="faq-question">
+            <span>{{ block.settings.question }}</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>{{ block.settings.answer }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const faqItems = document.querySelectorAll('#faq .faq-item');
+  faqItems.forEach((item) => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    // Hide all answers by default
+    answer.style.display = 'none';
+    item.classList.remove('active');
+    question.addEventListener('click', function() {
+      if (item.classList.contains('active')) {
+        answer.style.display = 'none';
+        item.classList.remove('active');
+      } else {
+        faqItems.forEach(otherItem => {
+          otherItem.querySelector('.faq-answer').style.display = 'none';
+          otherItem.classList.remove('active');
+        });
+        answer.style.display = 'block';
+        item.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Custom FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Questions fréquentes"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Vous avez une question ? Nous avons la réponse."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Comment fonctionne le recouvrement ?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Nous procédons d'abord à une relance amiable, puis à une procédure judiciaire si nécessaire."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom FAQ Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

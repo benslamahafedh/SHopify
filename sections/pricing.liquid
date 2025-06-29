@@ -1,0 +1,129 @@
+<section class="pricing">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <div class="section-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="pricing-grid">
+      {% for block in section.blocks %}
+        <div class="pricing-card{% if block.settings.featured %} featured{% endif %}">
+          {% if block.settings.featured %}
+            <div class="pricing-badge">{{ block.settings.badge }}</div>
+          {% endif %}
+          <div class="pricing-header">
+            <h3>{{ block.settings.plan_title }}</h3>
+            <div class="price">
+              <span class="currency">{{ block.settings.currency }}</span>
+              <span class="amount">{{ block.settings.amount }}</span>
+              <span class="period">{{ block.settings.period }}</span>
+            </div>
+          </div>
+          {% assign features_array = block.settings.features | split: '\n' %}
+          <ul class="pricing-features">
+            {% for feature in features_array %}
+              <li><i class="fa-solid fa-check"></i> {{ feature }}</li>
+            {% endfor %}
+          </ul>
+          <a href="{{ block.settings.cta_link }}" class="pricing-cta">{{ block.settings.cta_label }}</a>
+        </div>
+      {% endfor %}
+    </div>
+    {% if section.settings.note != blank %}
+      <div class="pricing-note"><i class="fa-solid fa-info-circle"></i> {{ section.settings.note }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Pricing Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Nos Tarifs"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Des offres adaptées à chaque besoin."
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Pricing Note",
+      "default": "Contactez-nous pour un devis personnalisé."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Pricing Plan",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured Plan",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge Text (if featured)",
+          "default": "Populaire"
+        },
+        {
+          "type": "text",
+          "id": "plan_title",
+          "label": "Plan Title",
+          "default": "Standard"
+        },
+        {
+          "type": "text",
+          "id": "currency",
+          "label": "Currency",
+          "default": "€"
+        },
+        {
+          "type": "text",
+          "id": "amount",
+          "label": "Amount",
+          "default": "99"
+        },
+        {
+          "type": "text",
+          "id": "period",
+          "label": "Period",
+          "default": "/mois"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (one per line)",
+          "default": "Sans engagement\nAssistance prioritaire\nAccès à toutes les fonctionnalités"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "default": "Choisir"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA Link",
+          "default": "/"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Pricing Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

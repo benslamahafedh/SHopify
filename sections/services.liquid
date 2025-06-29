@@ -1,0 +1,286 @@
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <div class="section-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="services-grid">
+      {% for block in section.blocks %}
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="{{ block.settings.icon }}"></i>
+          </div>
+          <div class="service-title">{{ block.settings.title }}</div>
+          <div class="service-description">{{ block.settings.description }}</div>
+          {% if block.settings.features != blank %}
+            {% assign features_array = block.settings.features | split: '\n' %}
+            <ul class="service-features">
+              {% for feature in features_array %}
+                <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if block.settings.cta_label != blank %}
+            <a href="{{ block.settings.cta_link }}" class="service-cta">{{ block.settings.cta_label }}</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: 6rem 0 !important;
+    background: linear-gradient(135deg, #ffffff 0%, var(--light-bg) 50%, #ffffff 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .services::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+  }
+  .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  .section-header {
+    text-align: center !important;
+    margin-bottom: 5rem !important;
+  }
+  .section-title {
+    font-size: 4.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--text-primary) !important;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  .section-subtitle {
+    font-size: 1.2rem !important;
+    color: var(--text-secondary) !important;
+    max-width: 700px !important;
+    margin: 0 auto !important;
+    line-height: 1.7 !important;
+  }
+  .services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2.5rem !important;
+  }
+  @media (max-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 2rem !important;
+    }
+  }
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+  }
+  .service-card {
+    background: var(--white) !important;
+    border-radius: 20px !important;
+    padding: 2.5rem !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border: 1px solid rgba(37, 99, 235, 0.1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: var(--gradient-primary) !important;
+    transform: scaleX(0) !important;
+    transform-origin: left !important;
+    transition: transform 0.4s ease !important;
+  }
+  .service-card:hover::before {
+    transform: scaleX(1) !important;
+  }
+  .service-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.15) !important;
+    border-color: rgba(37, 99, 235, 0.2) !important;
+  }
+  .service-icon {
+    width: 80px !important;
+    height: 80px !important;
+    background: var(--gradient-primary) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 2rem !important;
+    color: var(--white) !important;
+    font-size: 1.8rem !important;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.3s ease !important;
+  }
+  .service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg) !important;
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4) !important;
+  }
+  .service-title {
+    font-size: 1.7rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    color: var(--text-primary) !important;
+  }
+  .service-description {
+    color: var(--text-secondary) !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.6 !important;
+  }
+  .service-features {
+    list-style: none !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .service-features li {
+    padding: 0.25rem 0 !important;
+    color: var(--text-secondary) !important;
+    position: relative !important;
+    padding-left: 1.5rem !important;
+  }
+  .service-features li::before {
+    content: '✓' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: var(--success-color) !important;
+    font-weight: 600 !important;
+  }
+  .service-cta {
+    background: var(--primary-color) !important;
+    color: var(--white) !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 0.5rem !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+  }
+  .service-cta:hover {
+    background: var(--primary-dark) !important;
+    transform: translateY(-1px) !important;
+  }
+  .service-card-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .service-card-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.service-card');
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < triggerBottom) {
+          card.classList.add('service-card-visible');
+        }
+      });
+    };
+    // Set initial state
+    cards.forEach(card => card.classList.add('service-card-hidden'));
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Services Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Nos Services"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Découvrez nos services professionnels adaptés à vos besoins."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Font Awesome Icon (e.g. fa-solid fa-scale-balanced)",
+          "default": "fa-solid fa-scale-balanced"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Service Title",
+          "default": "Recouvrement de Créances"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Service Description",
+          "default": "Gestion amiable et judiciaire de vos créances."
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (one per line)",
+          "default": "Relance personnalisée\nProcédures rapides\nRespect de la réglementation"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "default": "En savoir plus"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA Link",
+          "default": "/"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Services Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

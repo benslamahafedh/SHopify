@@ -1,0 +1,88 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "droits_content": {
+      "type": "droits-etrangers",
+      "settings": {
+        "title": "Les Droits des Étrangères",
+        "subtitle": "Informations essentielles sur vos droits et démarches en tant qu'étrangère en France",
+        "contact_title": "Besoin d'aide ou de conseils juridiques?",
+        "contact_info": "Notre équipe d'experts est là pour vous accompagner dans vos démarches administratives et répondre à toutes vos questions concernant vos droits.",
+        "contact_button_label": "Nous Contacter",
+        "contact_button_link": "#contact"
+      },
+      "blocks": {
+        "droit_1": {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-passport",
+            "title": "Droit au séjour",
+            "description": "Informations complètes sur les différents types de titres de séjour et les conditions requises pour les obtenir et les renouveler.",
+            "points": "Carte de séjour temporaire\nCarte de séjour pluriannuelle\nCarte de résident\nRenouvellement et changement de statut\nDroit au maintien sur le territoire",
+            "important_note": "Les délais de traitement peuvent varier selon les préfectures. Il est recommandé de déposer votre demande de renouvellement 2 mois avant l'expiration."
+          }
+        },
+        "droit_2": {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-briefcase",
+            "title": "Droit au travail",
+            "description": "Conditions et procédures pour obtenir une autorisation de travail en France, selon votre situation et votre statut.",
+            "points": "Autorisation de travail salarié\nChangement de statut étudiant vers salarié\nCréation d'entreprise et auto-entrepreneur\nProfessions réglementées\nDroit au chômage et formation professionnelle",
+            "important_note": "Certaines activités professionnelles nécessitent des autorisations spécifiques. Vérifiez auprès de votre préfecture."
+          }
+        },
+        "droit_3": {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-graduation-cap",
+            "title": "Droit à l'éducation",
+            "description": "Accès à l'éducation, à la formation et à l'enseignement supérieur pour les étrangers en France.",
+            "points": "Inscription dans l'enseignement supérieur\nReconnaissance des diplômes étrangers\nAccès à la formation professionnelle\nBourses et aides financières\nApprentissage du français (FLE)",
+            "important_note": "Des équivalences peuvent être nécessaires pour certains diplômes. Contactez le ENIC-NARIC pour la reconnaissance de vos diplômes."
+          }
+        },
+        "droit_4": {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-heart",
+            "title": "Vie privée et familiale",
+            "description": "Droits relatifs à la vie familiale, au regroupement familial et à la protection de la vie privée.",
+            "points": "Regroupement familial\nMariage et PACS avec un(e) français(e)\nDroit de visite et garde des enfants\nProtection contre l'éloignement\nViolences conjugales et protection",
+            "important_note": "Les conditions de ressources, de logement et d'intégration sont vérifiées pour le regroupement familial."
+          }
+        },
+        "droit_5": {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-hospital",
+            "title": "Droit à la santé",
+            "description": "Accès aux soins médicaux et à la protection sociale en France selon votre situation administrative.",
+            "points": "Couverture maladie universelle (CMU-C)\nAide médicale d'État (AME)\nAccès aux soins d'urgence\nSuivi médical spécialisé\nPlanification familiale et IVG",
+            "important_note": "L'AME est destinée aux personnes en situation irrégulière. La CMU-C est accessible avec un titre de séjour."
+          }
+        },
+        "droit_6": {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-shield-alt",
+            "title": "Protection et recours",
+            "description": "Vos droits de recours et moyens de protection en cas de difficultés administratives ou de discriminations.",
+            "points": "Recours administratifs (RAPO, RG)\nRecours contentieux devant le tribunal\nAide juridictionnelle gratuite\nProtection contre les discriminations\nDéfenseur des droits",
+            "important_note": "Des délais stricts s'appliquent pour les recours : 2 mois pour les recours administratifs, 2 mois pour les recours contentieux."
+          }
+        }
+      }
+    }
+  },
+  "order": [
+    "main",
+    "droits_content"
+  ]
+} 

@@ -1,0 +1,126 @@
+<section id="trust" class="trust-section">
+  <div class="trust-container">
+    <div class="trust-title">{{ section.settings.title }}</div>
+    <div class="trust-items">
+      {% for block in section.blocks %}
+        <div class="trust-item">
+          <span class="trust-icon"><i class="{{ block.settings.icon }}"></i></span>
+          <span>{{ block.settings.text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-section {
+    background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%) !important;
+    padding: 4rem 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .trust-section::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(37,99,235,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>') !important;
+    pointer-events: none !important;
+  }
+  .trust-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+    text-align: center !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  .trust-title {
+    font-size: 1.4rem !important;
+    color: var(--text-secondary) !important;
+    margin-bottom: 3rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    font-weight: 600 !important;
+  }
+  .trust-items {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4rem !important;
+    flex-wrap: wrap !important;
+  }
+  .trust-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+    padding: 1rem 1.5rem !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 50px !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.3s ease !important;
+  }
+  .trust-item:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+  .trust-icon {
+    color: var(--success-color) !important;
+    font-size: 1.2rem !important;
+    background: rgba(16, 185, 129, 0.1) !important;
+    padding: 0.5rem !important;
+    border-radius: 50% !important;
+    width: 35px !important;
+    height: 35px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Trust Indicators",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Pourquoi nous faire confiance ?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust Indicator",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Font Awesome Icon (e.g. fa-solid fa-shield-check)",
+          "default": "fa-solid fa-shield-check"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "100% conforme à la réglementation"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Indicators",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

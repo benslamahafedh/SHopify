@@ -1,0 +1,432 @@
+<section id="droits-etrangers" class="droits-etrangers">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <div class="section-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="droits-grid">
+      {% for block in section.blocks %}
+        <div class="droit-card">
+          <div class="droit-icon">
+            <i class="{{ block.settings.icon }}"></i>
+          </div>
+          <div class="droit-title">{{ block.settings.title }}</div>
+          <div class="droit-description">{{ block.settings.description }}</div>
+          {% if block.settings.points != blank %}
+            {% assign points_array = block.settings.points | split: '\n' %}
+            <ul class="droit-points">
+              {% for point in points_array %}
+                {% unless point == blank %}
+                  <li>{{ point }}</li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if block.settings.important_note != blank %}
+            <div class="droit-note">
+              <i class="fas fa-info-circle"></i>
+              {{ block.settings.important_note }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.contact_info != blank %}
+      <div class="droits-footer">
+        <div class="contact-banner">
+          <h3>{{ section.settings.contact_title | default: 'Besoin d\'aide?' }}</h3>
+          <p>{{ section.settings.contact_info }}</p>
+          {% if section.settings.contact_button_label != blank %}
+            <a href="{{ section.settings.contact_button_link }}" class="contact-cta">
+              {{ section.settings.contact_button_label }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .droits-etrangers {
+    padding: 6rem 0 !important;
+    background: linear-gradient(135deg, #ffffff 0%, var(--light-bg) 50%, #ffffff 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .droits-etrangers::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+  }
+  .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  .section-header {
+    text-align: center !important;
+    margin-bottom: 5rem !important;
+  }
+  .section-title {
+    font-size: 4.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--text-primary) !important;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  .section-subtitle {
+    font-size: 1.2rem !important;
+    color: var(--text-secondary) !important;
+    max-width: 700px !important;
+    margin: 0 auto !important;
+    line-height: 1.7 !important;
+  }
+  .droits-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    gap: 2.5rem !important;
+    margin-bottom: 4rem !important;
+  }
+  @media (max-width: 768px) {
+    .droits-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+    .section-title {
+      font-size: 3rem !important;
+    }
+  }
+  .droit-card {
+    background: var(--white) !important;
+    border-radius: 20px !important;
+    padding: 2.5rem !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border: 1px solid rgba(37, 99, 235, 0.1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .droit-card::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: var(--gradient-primary) !important;
+    transform: scaleX(0) !important;
+    transform-origin: left !important;
+    transition: transform 0.4s ease !important;
+  }
+  .droit-card:hover::before {
+    transform: scaleX(1) !important;
+  }
+  .droit-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.15) !important;
+    border-color: rgba(37, 99, 235, 0.2) !important;
+  }
+  .droit-icon {
+    width: 80px !important;
+    height: 80px !important;
+    background: var(--gradient-primary) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 2rem !important;
+    color: var(--white) !important;
+    font-size: 1.8rem !important;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.3s ease !important;
+  }
+  .droit-card:hover .droit-icon {
+    transform: scale(1.1) rotate(5deg) !important;
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4) !important;
+  }
+  .droit-title {
+    font-size: 1.7rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    color: var(--text-primary) !important;
+  }
+  .droit-description {
+    color: var(--text-secondary) !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.6 !important;
+  }
+  .droit-points {
+    list-style: none !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .droit-points li {
+    padding: 0.5rem 0 !important;
+    color: var(--text-secondary) !important;
+    position: relative !important;
+    padding-left: 1.5rem !important;
+    line-height: 1.6 !important;
+  }
+  .droit-points li::before {
+    content: '→' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+  }
+  .droit-note {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+    border-radius: 10px !important;
+    padding: 1rem !important;
+    color: var(--primary-color) !important;
+    font-size: 0.9rem !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+  }
+  .droit-note i {
+    margin-top: 0.1rem !important;
+    flex-shrink: 0 !important;
+  }
+  .droits-footer {
+    margin-top: 4rem !important;
+  }
+  .contact-banner {
+    background: var(--gradient-primary) !important;
+    color: var(--white) !important;
+    padding: 3rem !important;
+    border-radius: 20px !important;
+    text-align: center !important;
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2) !important;
+  }
+  .contact-banner h3 {
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .contact-banner p {
+    font-size: 1.1rem !important;
+    margin-bottom: 2rem !important;
+    opacity: 0.95 !important;
+  }
+  .contact-cta {
+    background: var(--white) !important;
+    color: var(--primary-color) !important;
+    padding: 1rem 2rem !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+  .contact-cta:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+  }
+  .droit-card-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .droit-card-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.droit-card');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('droit-card-visible');
+          entry.target.classList.remove('droit-card-hidden');
+        }
+      });
+    }, observerOptions);
+
+    cards.forEach((card, index) => {
+      card.classList.add('droit-card-hidden');
+      setTimeout(() => {
+        observer.observe(card);
+      }, index * 100);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Droits des Étrangères",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Les Droits des Étrangères",
+      "label": "Titre de la section"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "default": "Informations essentielles sur vos droits et démarches en tant qu'étrangère",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "header",
+      "content": "Contact et assistance"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "default": "Besoin d'aide ou de conseils?",
+      "label": "Titre de contact"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_info",
+      "default": "Notre équipe est là pour vous accompagner dans vos démarches et répondre à vos questions.",
+      "label": "Informations de contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_button_label",
+      "default": "Nous Contacter",
+      "label": "Texte du bouton de contact"
+    },
+    {
+      "type": "url",
+      "id": "contact_button_link",
+      "label": "Lien du bouton de contact"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "droit",
+      "name": "Droit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "default": "fas fa-balance-scale",
+          "label": "Classe d'icône (FontAwesome)",
+          "info": "Ex: fas fa-balance-scale, fas fa-passport, fas fa-home"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Droit au séjour",
+          "label": "Titre"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "default": "Description des droits et procédures concernant le séjour.",
+          "label": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "points",
+          "label": "Points clés (un par ligne)",
+          "info": "Séparez chaque point par une nouvelle ligne"
+        },
+        {
+          "type": "textarea",
+          "id": "important_note",
+          "label": "Note importante (optionnelle)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Droits des Étrangères",
+      "blocks": [
+        {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-passport",
+            "title": "Droit au séjour",
+            "description": "Informations sur les différents types de titres de séjour et les conditions pour les obtenir.",
+            "points": "Carte de séjour temporaire\nCarte de séjour pluriannuelle\nCarte de résident\nRenouvellement et changement de statut",
+            "important_note": "Les délais de traitement peuvent varier selon les préfectures."
+          }
+        },
+        {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-briefcase",
+            "title": "Droit au travail",
+            "description": "Conditions et procédures pour obtenir une autorisation de travail en France.",
+            "points": "Autorisation de travail\nChangement de statut étudiant vers salarié\nCréation d'entreprise\nProfessions réglementées",
+            "important_note": "Certaines activités nécessitent des autorisations spécifiques."
+          }
+        },
+        {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-graduation-cap",
+            "title": "Droit à l'éducation",
+            "description": "Accès à l'éducation et à la formation pour les étrangers en France.",
+            "points": "Inscription dans l'enseignement supérieur\nReconnaissance des diplômes étrangers\nAccès à la formation professionnelle\nBourses et aides financières",
+            "important_note": "Des équivalences peuvent être nécessaires pour certains diplômes."
+          }
+        },
+        {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-heart",
+            "title": "Vie privée et familiale",
+            "description": "Droits relatifs à la vie familiale et au regroupement familial.",
+            "points": "Regroupement familial\nMariage et PACS\nDroit de visite des enfants\nProtection contre l'éloignement",
+            "important_note": "Les conditions de ressources et de logement sont vérifiées."
+          }
+        },
+        {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-hospital",
+            "title": "Droit à la santé",
+            "description": "Accès aux soins et à la protection sociale en France.",
+            "points": "Couverture maladie universelle (CMU)\nAide médicale d'État (AME)\nAccès aux soins d'urgence\nSuivi médical spécialisé",
+            "important_note": "L'AME est destinée aux personnes en situation irrégulière."
+          }
+        },
+        {
+          "type": "droit",
+          "settings": {
+            "icon": "fas fa-shield-alt",
+            "title": "Protection et recours",
+            "description": "Droits de recours et protection en cas de difficultés administratives.",
+            "points": "Recours administratifs\nRecours contentieux\nAide juridictionnelle\nProtection contre les discriminations",
+            "important_note": "Des délais stricts s'appliquent pour les recours."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 
