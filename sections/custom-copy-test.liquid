@@ -1,0 +1,41 @@
+<section>
+  <h2>{{ section.settings.title }}</h2>
+  <p>{{ section.settings.subtitle }}</p>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Copy Test",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Copy Test"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "This is a copy test"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Test Info",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Font Awesome Icon", "default": "fas fa-phone" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Test" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Test Value" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Copy Test",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %} 
