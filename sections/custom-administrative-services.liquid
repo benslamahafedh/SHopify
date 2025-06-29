@@ -1,47 +1,11 @@
-<section id="admin-services" class="admin-services">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">{{ section.settings.title }}</h2>
-      <div class="section-subtitle">{{ section.settings.subtitle }}</div>
-    </div>
-    <div class="services-grid">
-      {% for block in section.blocks %}
-        <div class="service-card service-card-hidden">
-          <div class="service-icon">
-            <i class="{{ block.settings.icon }}"></i>
-          </div>
-          <div class="service-title">{{ block.settings.title }}</div>
-          <div class="service-description">{{ block.settings.description }}</div>
-          {% if block.settings.features != blank %}
-            {% assign features_array = block.settings.features | split: '\n' %}
-            <ul class="service-features">
-              {% for feature in features_array %}
-                {% unless feature == blank %}
-                  <li>{{ feature }}</li>
-                {% endunless %}
-              {% endfor %}
-            </ul>
-          {% endif %}
-          {% if block.settings.note != blank %}
-            <div class="service-note">
-              <i class="fas fa-info-circle"></i>
-              {{ block.settings.note }}
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
 <style>
-  .admin-services {
+  .custom-administrative-services {
     padding: 6rem 0 !important;
     background: linear-gradient(135deg, var(--white) 0%, var(--light-bg) 50%, var(--white) 100%) !important;
     position: relative !important;
     overflow: hidden !important;
   }
-  .admin-services::before {
+  .custom-administrative-services::before {
     content: '';
     position: absolute !important;
     top: 0 !important;
@@ -52,18 +16,18 @@
       radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 50%) !important;
     pointer-events: none !important;
   }
-  .container {
+  .custom-administrative-services-container {
     max-width: 1200px !important;
     margin: 0 auto !important;
     padding: 0 1.5rem !important;
     position: relative !important;
     z-index: 2 !important;
   }
-  .section-header {
+  .custom-administrative-services-section-header {
     text-align: center !important;
     margin-bottom: 5rem !important;
   }
-  .section-title {
+  .custom-administrative-services-section-title {
     font-size: 4rem !important;
     font-weight: 700 !important;
     margin-bottom: 1.5rem !important;
@@ -73,28 +37,28 @@
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
   }
-  .section-subtitle {
+  .custom-administrative-services-section-subtitle {
     font-size: 1.2rem !important;
     color: var(--text-secondary) !important;
     max-width: 700px !important;
     margin: 0 auto !important;
     line-height: 1.7 !important;
   }
-  .services-grid {
+  .custom-administrative-services-grid {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
     gap: 2.5rem !important;
   }
   @media (max-width: 768px) {
-    .services-grid {
+    .custom-administrative-services-grid {
       grid-template-columns: 1fr !important;
       gap: 1.5rem !important;
     }
-    .section-title {
+    .custom-administrative-services-section-title {
       font-size: 2.5rem !important;
     }
   }
-  .service-card {
+  .custom-administrative-services-card {
     background: var(--white) !important;
     border-radius: 20px !important;
     padding: 2.5rem !important;
@@ -103,10 +67,8 @@
     border: 1px solid rgba(37, 99, 235, 0.1) !important;
     position: relative !important;
     overflow: hidden !important;
-    opacity: 1 !important;
-    transform: none !important;
   }
-  .service-card::before {
+  .custom-administrative-services-card::before {
     content: '';
     position: absolute !important;
     top: 0 !important;
@@ -118,15 +80,15 @@
     transform-origin: left !important;
     transition: transform 0.4s ease !important;
   }
-  .service-card:hover::before {
+  .custom-administrative-services-card:hover::before {
     transform: scaleX(1) !important;
   }
-  .service-card:hover {
+  .custom-administrative-services-card:hover {
     transform: translateY(-10px) !important;
     box-shadow: 0 25px 60px rgba(37, 99, 235, 0.15) !important;
     border-color: rgba(37, 99, 235, 0.2) !important;
   }
-  .service-icon {
+  .custom-administrative-services-icon {
     width: 80px !important;
     height: 80px !important;
     background: var(--gradient-primary) !important;
@@ -140,41 +102,41 @@
     box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3) !important;
     transition: all 0.3s ease !important;
   }
-  .service-card:hover .service-icon {
+  .custom-administrative-services-card:hover .custom-administrative-services-icon {
     transform: scale(1.1) rotate(5deg) !important;
     box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4) !important;
   }
-  .service-title {
+  .custom-administrative-services-title {
     font-size: 1.7rem !important;
     font-weight: 600 !important;
     margin-bottom: 1rem !important;
     color: var(--text-primary) !important;
   }
-  .service-description {
+  .custom-administrative-services-description {
     color: var(--text-secondary) !important;
     margin-bottom: 1.5rem !important;
     line-height: 1.6 !important;
   }
-  .service-features {
+  .custom-administrative-services-features {
     list-style: none !important;
     margin-bottom: 1.5rem !important;
     padding: 0 !important;
   }
-  .service-features li {
+  .custom-administrative-services-features li {
     padding: 0.4rem 0 !important;
     color: var(--text-secondary) !important;
     position: relative !important;
     padding-left: 1.5rem !important;
     line-height: 1.5 !important;
   }
-  .service-features li::before {
+  .custom-administrative-services-features li::before {
     content: '✓' !important;
     position: absolute !important;
     left: 0 !important;
     color: var(--success-color) !important;
     font-weight: 600 !important;
   }
-  .service-note {
+  .custom-administrative-services-note {
     background: rgba(37, 99, 235, 0.1) !important;
     border: 1px solid rgba(37, 99, 235, 0.2) !important;
     border-radius: 10px !important;
@@ -186,56 +148,63 @@
     gap: 0.5rem !important;
     margin-top: 1rem !important;
   }
-  .service-note i {
+  .custom-administrative-services-note i {
     margin-top: 0.1rem !important;
     flex-shrink: 0 !important;
   }
-  
-  /* Animation classes */
-  .service-card-hidden {
-    opacity: 0 !important;
-    transform: translateY(40px) !important;
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
-  }
-  .service-card-visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
-  }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const cards = document.querySelectorAll('.service-card');
-    const revealOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if (cardTop < triggerBottom) {
-          card.classList.add('service-card-visible');
-        }
-      });
-    };
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
-  });
-</script>
+<section id="custom-administrative-services" class="custom-administrative-services">
+  <div class="custom-administrative-services-container">
+    <div class="custom-administrative-services-section-header">
+      <h2 class="custom-administrative-services-section-title">{{ section.settings.title }}</h2>
+      <div class="custom-administrative-services-section-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="custom-administrative-services-grid">
+      {% for block in section.blocks %}
+        <div class="custom-administrative-services-card">
+          <div class="custom-administrative-services-icon">
+            <i class="{{ block.settings.icon }}"></i>
+          </div>
+          <div class="custom-administrative-services-title">{{ block.settings.title }}</div>
+          <div class="custom-administrative-services-description">{{ block.settings.description }}</div>
+          {% if block.settings.features != blank %}
+            {% assign features_array = block.settings.features | split: '\n' %}
+            <ul class="custom-administrative-services-features">
+              {% for feature in features_array %}
+                {% unless feature == blank %}
+                  <li>{{ feature }}</li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if block.settings.note != blank %}
+            <div class="custom-administrative-services-note">
+              <i class="fas fa-info-circle"></i>
+              {{ block.settings.note }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
-  "name": "Administrative Services",
+  "name": "Custom Administrative Services",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "default": "Administrative Services",
-      "label": "Section Title"
+      "label": "Section Title",
+      "default": "Services Administratifs"
     },
     {
       "type": "textarea",
       "id": "subtitle",
-      "default": "We assist you in preparing, digitizing and transmitting your files to the competent authorities.",
-      "label": "Section Subtitle"
+      "label": "Section Subtitle",
+      "default": "Nous vous assistons dans la préparation, numérisation et transmission de vos dossiers aux autorités compétentes."
     }
   ],
   "blocks": [
@@ -246,21 +215,20 @@
         {
           "type": "text",
           "id": "icon",
-          "default": "fas fa-file-alt",
-          "label": "FontAwesome Icon Class",
-          "info": "Example: fas fa-file-alt, fas fa-user-tie, fas fa-clipboard-check"
+          "label": "Font Awesome Icon (e.g. fas fa-file-alt)",
+          "default": "fas fa-file-alt"
         },
         {
           "type": "text",
           "id": "title",
-          "default": "Document Preparation",
-          "label": "Service Title"
+          "label": "Service Title",
+          "default": "Préparation de Dossiers"
         },
         {
           "type": "textarea",
           "id": "description",
-          "default": "Complete preparation of your file according to official requirements.",
-          "label": "Service Description"
+          "label": "Service Description",
+          "default": "Préparation complète de votre dossier selon les exigences officielles."
         },
         {
           "type": "textarea",
@@ -278,7 +246,7 @@
   ],
   "presets": [
     {
-      "name": "Administrative Services",
+      "name": "Custom Administrative Services",
       "category": "Custom"
     }
   ]
