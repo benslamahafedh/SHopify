@@ -1,120 +1,74 @@
 {
   "sections": {
-    "test_section": {
-      "type": "custom-test",
-      "settings": {
-        "title": "Test Section",
-        "description": "This is a test to see if sections work"
-      }
+    "main": {
+      "type": "main-page",
+      "settings": {}
     },
-    "droit_hero": {
-      "type": "custom-foreigners-hero",
+    "hero_section": {
+      "type": "hero",
       "settings": {
-        "title": "Accompagnement Administratif",
-        "subtitle": "Droit des étrangers",
-        "description": "Un service professionnel et sécurisé pour vous aider à constituer vos dossiers sans prendre de risques juridiques.",
+        "title": "Accompagnement Administratif - Droit des Étrangers",
+        "subtitle": "Service professionnel et sécurisé pour vous aider à constituer vos dossiers sans prendre de risques juridiques.",
         "primary_button_label": "Consultation Gratuite",
         "primary_button_link": "#contact",
         "secondary_button_label": "Nos Services",
-        "secondary_button_link": "#droit-services"
+        "secondary_button_link": "#services"
       }
     },
-    "droit_services": {
-      "type": "custom-administrative-services",
+    "services_section": {
+      "type": "services",
       "settings": {
         "title": "Nos Services Administratifs",
-        "subtitle": "Nous vous assistons dans la constitution, la numérisation et la transmission de vos dossiers auprès des autorités compétentes (préfecture, ANEF, France-Visas, etc.)."
+        "subtitle": "Assistance complète pour vos démarches administratives en droit des étrangers."
       },
       "blocks": {
         "service_1": {
           "type": "service",
           "settings": {
-            "icon": "fas fa-file-alt",
-            "title": "Préparation des documents",
+            "icon": "fa-solid fa-file-alt",
+            "title": "Préparation des Documents",
             "description": "Constitution complète de votre dossier selon les listes officielles des préfectures.",
-            "features": "Vérification de complétude du dossier\nClassement et numérisation\nTraductions officielles (via traducteurs assermentés)\nSuivi de l'avancement du dossier",
-            "note": "Nous intervenons exclusivement sur les aspects logistiques et administratifs, sans fournir de conseils juridiques."
+            "features": "Vérification de complétude du dossier\nClassement et numérisation\nTraductions officielles\nSuivi de l'avancement",
+            "cta_label": "En savoir plus",
+            "cta_link": "#contact"
           }
         },
         "service_2": {
           "type": "service",
           "settings": {
-            "icon": "fas fa-laptop",
-            "title": "Aide aux démarches en ligne",
+            "icon": "fa-solid fa-laptop",
+            "title": "Démarches en Ligne",
             "description": "Assistance pour la création de comptes et les téléprocédures officielles.",
-            "features": "Aide à la création de comptes ANEF\nAccès à France-Visas\nPrise de rendez-vous préfecture\nSuivi administratif de l'avancement",
-            "note": "Accompagnement personnalisé pour toutes vos démarches numériques sans erreur."
+            "features": "Aide création comptes ANEF\nAccès France-Visas\nPrise de rendez-vous préfecture\nSuivi administratif",
+            "cta_label": "Consulter",
+            "cta_link": "#contact"
           }
         },
         "service_3": {
           "type": "service",
           "settings": {
-            "icon": "fas fa-exchange-alt",
-            "title": "Changement de statut",
+            "icon": "fa-solid fa-exchange-alt",
+            "title": "Changement de Statut",
             "description": "Constitution de dossiers pour vos changements de situation administrative.",
-            "features": "Changement étudiant vers salarié\nVie privée et familiale\nRenouvellement de titres de séjour\nRegroupement familial",
-            "note": "Chaque situation est unique et nécessite une approche personnalisée selon votre profil."
-          }
-        }
-      }
-    },
-    "droit_legal": {
-      "type": "custom-legal-partnership",
-      "settings": {
-        "title": "Services Juridiques Partenaires",
-        "subtitle": "Pour les aspects juridiques complexes, nous collaborons avec des avocats spécialisés en droit des étrangers.",
-        "partnership_title": "Accompagnement Juridique Sécurisé",
-        "partnership_description": "En cas de difficulté, nous proposons une convention tripartite transparente entre vous, notre cabinet, et un avocat partenaire. Vous bénéficiez ainsi d'un accompagnement administratif complet ET d'un suivi juridique professionnel sécurisé.",
-        "note_title": "Solution tripartite claire",
-        "note": "Transparence sur nos rôles : nous ne faisons pas de conseil juridique. Notre réseau d'avocats partenaires est compétent et réactif, vous garantissant un gain de temps et de sérénité pour constituer votre dossier sans erreur.",
-        "button_label": "Consultation Juridique",
-        "button_link": "#contact"
-      },
-      "blocks": {
-        "legal_1": {
-          "type": "legal_service",
-          "settings": {
-            "icon": "fas fa-file-signature",
-            "title": "Recours et contentieux",
-            "description": "Recours gracieux, hiérarchique ou contentieux en cas de refus ou OQTF."
-          }
-        },
-        "legal_2": {
-          "type": "legal_service",
-          "settings": {
-            "icon": "fas fa-pen",
-            "title": "Rédaction juridique",
-            "description": "Rédaction de courriers à valeur juridique et documents officiels."
-          }
-        },
-        "legal_3": {
-          "type": "legal_service",
-          "settings": {
-            "icon": "fas fa-university",
-            "title": "Suivi judiciaire",
-            "description": "Suivi des procédures devant les juridictions administratives."
-          }
-        },
-        "legal_4": {
-          "type": "legal_service",
-          "settings": {
-            "icon": "fas fa-lightbulb",
-            "title": "Conseil stratégique",
-            "description": "Conseil stratégique sur le type de titre à solliciter selon votre situation."
+            "features": "Étudiant vers salarié\nVie privée et familiale\nRenouvellement titres séjour\nRegroupement familial",
+            "cta_label": "Découvrir",
+            "cta_link": "#contact"
           }
         }
       }
     },
     "contact_section": {
       "type": "contact",
-      "settings": {}
+      "settings": {
+        "title": "Consultation Gratuite",
+        "subtitle": "Contactez-nous pour évaluer votre situation et obtenir un devis personnalisé"
+      }
     }
   },
   "order": [
-    "test_section",
-    "droit_hero",
-    "droit_services", 
-    "droit_legal",
+    "main",
+    "hero_section",
+    "services_section",
     "contact_section"
   ]
 } 
