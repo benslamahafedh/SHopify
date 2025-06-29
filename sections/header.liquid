@@ -492,6 +492,7 @@
       <ul class="nav-menu">
         <li><a href="{%- if request.page_type == 'index' -%}#hero{%- else -%}{{ routes.root_url }}#hero{%- endif -%}" class="mobile-nav-link">Accueil</a></li>
         <li><a href="{%- if request.page_type == 'index' -%}#services{%- else -%}{{ routes.root_url }}#services{%- endif -%}" class="mobile-nav-link">Services</a></li>
+        <li><a href="{{ routes.root_url }}pages/les-droits-des-etrangeres" class="mobile-nav-link">Droits des Étrangères</a></li>
         <li><a href="{%- if request.page_type == 'index' -%}#process{%- else -%}{{ routes.root_url }}#process{%- endif -%}" class="mobile-nav-link">Processus</a></li>
         <li>
           <a href="{{ routes.collections_all_url | default: '/collections/all' }}" class="mobile-nav-link">Packs</a>
@@ -532,6 +533,7 @@
     <ul>
       <li><a href="{%- if request.page_type == 'index' -%}#hero{%- else -%}{{ routes.root_url }}#hero{%- endif -%}" class="mobile-nav-link">Accueil</a></li>
       <li><a href="{%- if request.page_type == 'index' -%}#services{%- else -%}{{ routes.root_url }}#services{%- endif -%}" class="mobile-nav-link">Services</a></li>
+      <li><a href="{{ routes.root_url }}pages/les-droits-des-etrangeres" class="mobile-nav-link">Droits des Étrangères</a></li>
       <li><a href="{%- if request.page_type == 'index' -%}#process{%- else -%}{{ routes.root_url }}#process{%- endif -%}" class="mobile-nav-link">Processus</a></li>
       <li>
         <a href="{{ routes.collections_all_url | default: '/collections/all' }}" class="mobile-nav-link">Packs</a>
