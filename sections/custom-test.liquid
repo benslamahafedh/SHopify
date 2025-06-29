@@ -1,0 +1,30 @@
+<section>
+  <h2>{{ section.settings.title }}</h2>
+  <p>{{ section.settings.description }}</p>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Test Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Test Section"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "This is a test"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Test Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %} 
