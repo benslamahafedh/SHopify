@@ -1,0 +1,296 @@
+<style>
+  .foreigners-services {
+    padding: 5rem 0 !important;
+    background: var(--white) !important;
+  }
+  .foreigners-services-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+  }
+  .foreigners-services-header {
+    text-align: center !important;
+    margin-bottom: 4rem !important;
+  }
+  .foreigners-services-title {
+    font-size: 3rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 1rem !important;
+  }
+  .foreigners-services-subtitle {
+    font-size: 1.2rem !important;
+    color: var(--text-secondary) !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    line-height: 1.6 !important;
+  }
+  .foreigners-services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    gap: 2rem !important;
+    margin-top: 3rem !important;
+  }
+  @media (max-width: 768px) {
+    .foreigners-services-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+  }
+  .service-card {
+    background: var(--white) !important;
+    border-radius: 20px !important;
+    padding: 2.5rem !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border: 1px solid rgba(37, 99, 235, 0.1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: var(--gradient-primary) !important;
+    transform: scaleX(0) !important;
+    transform-origin: left !important;
+    transition: transform 0.4s ease !important;
+  }
+  .service-card:hover::before {
+    transform: scaleX(1) !important;
+  }
+  .service-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 25px 60px rgba(37, 99, 235, 0.15) !important;
+    border-color: rgba(37, 99, 235, 0.2) !important;
+  }
+  .service-icon {
+    width: 80px !important;
+    height: 80px !important;
+    background: var(--gradient-primary) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 2rem !important;
+    color: var(--white) !important;
+    font-size: 1.8rem !important;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.3s ease !important;
+  }
+  .service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg) !important;
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4) !important;
+  }
+  .service-title {
+    font-size: 1.7rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    color: var(--text-primary) !important;
+  }
+  .service-description {
+    color: var(--text-secondary) !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.6 !important;
+  }
+  .service-features {
+    list-style: none !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .service-features li {
+    padding: 0.25rem 0 !important;
+    color: var(--text-secondary) !important;
+    position: relative !important;
+    padding-left: 1.5rem !important;
+  }
+  .service-features li::before {
+    content: '✓' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: var(--success-color) !important;
+    font-weight: 600 !important;
+  }
+  .service-cta {
+    background: var(--primary-color) !important;
+    color: var(--white) !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 0.5rem !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+  }
+  .service-cta:hover {
+    background: var(--primary-dark) !important;
+    transform: translateY(-1px) !important;
+  }
+  .service-card-hidden {
+    opacity: 0 !important;
+    transform: translateY(40px) !important;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .service-card-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+</style>
+
+<section class="foreigners-services">
+  <div class="foreigners-services-container">
+    <div class="foreigners-services-header">
+      <h2 class="foreigners-services-title">{{ section.settings.title }}</h2>
+      <div class="foreigners-services-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+    <div class="foreigners-services-grid">
+      {% for block in section.blocks %}
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="{{ block.settings.icon }}"></i>
+          </div>
+          <h3 class="service-title">{{ block.settings.title }}</h3>
+          <p class="service-description">{{ block.settings.description }}</p>
+          {% if block.settings.features != blank %}
+            <ul class="service-features">
+              {% assign features = block.settings.features | split: newline %}
+              {% for feature in features %}
+                {% if feature != blank %}
+                  <li>{{ feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if block.settings.cta_label != blank %}
+            <a href="{{ block.settings.cta_link | default: '#contact' }}" class="service-cta">{{ block.settings.cta_label }}</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.service-card');
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < triggerBottom) {
+          card.classList.add('service-card-visible');
+        }
+      });
+    };
+    // Set initial state
+    cards.forEach(card => card.classList.add('service-card-hidden'));
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Foreigners Services",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Nos Services Administratifs"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Nous vous assistons dans la constitution, la numérisation et la transmission de vos dossiers auprès des autorités compétentes (préfecture, ANEF, France-Visas, etc.)."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Font Awesome Icon (e.g. fas fa-file-alt)",
+          "default": "fas fa-file-alt"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Service Title",
+          "default": "Préparation des Documents"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Service Description",
+          "default": "Constitution complète de votre dossier selon les listes officielles des préfectures."
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (one per line)",
+          "default": "Vérification de complétude du dossier\nClassement et numérisation\nTraductions officielles\nSuivi de l'avancement"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "default": "En savoir plus"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA Link",
+          "default": "#contact"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Foreigners Services",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "icon": "fas fa-file-alt",
+            "title": "Préparation des Documents",
+            "description": "Constitution complète de votre dossier selon les listes officielles des préfectures.",
+            "features": "Vérification de complétude du dossier\nClassement et numérisation\nTraductions officielles\nSuivi de l'avancement",
+            "cta_label": "En savoir plus"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "fas fa-laptop",
+            "title": "Démarches en Ligne",
+            "description": "Assistance pour la création de comptes et les téléprocédures officielles.",
+            "features": "Aide création comptes ANEF\nAccès France-Visas\nPrise de rendez-vous préfecture\nSuivi administratif",
+            "cta_label": "Consulter"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "fas fa-exchange-alt",
+            "title": "Changement de Statut",
+            "description": "Constitution de dossiers pour vos changements de situation administrative.",
+            "features": "Étudiant vers salarié\nVie privée et familiale\nRenouvellement titres séjour\nRegroupement familial",
+            "cta_label": "Découvrir"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

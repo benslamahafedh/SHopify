@@ -1,0 +1,167 @@
+<style>
+  .foreigners-hero {
+    background: var(--gradient-hero) !important;
+    min-height: 70vh !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .foreigners-hero::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+  }
+  .foreigners-hero-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    text-align: center !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  .foreigners-hero h1 {
+    font-size: 4rem !important;
+    font-weight: 700 !important;
+    color: var(--white) !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.1 !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  }
+  .foreigners-hero-subtitle {
+    font-size: 1.4rem !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    margin-bottom: 2.5rem !important;
+    max-width: 800px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    line-height: 1.6 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  }
+  .foreigners-hero-cta {
+    display: flex !important;
+    gap: 1.5rem !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 1.2rem 2.5rem !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+  .btn-primary {
+    background: var(--white) !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+  }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--white) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+  }
+  .btn-secondary:hover {
+    background: var(--white) !important;
+    color: var(--primary-color) !important;
+    border-color: var(--white) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+  }
+  
+  @media (max-width: 768px) {
+    .foreigners-hero h1 {
+      font-size: 2.5rem !important;
+    }
+    .foreigners-hero-cta {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+  }
+</style>
+
+<section class="foreigners-hero">
+  <div class="foreigners-hero-container">
+    <h1>{{ section.settings.title }}</h1>
+    <div class="foreigners-hero-subtitle">{{ section.settings.subtitle }}</div>
+    <div class="foreigners-hero-cta">
+      {% if section.settings.primary_button_label != blank %}
+        <a href="{{ section.settings.primary_button_link }}" class="btn-primary">
+          <i class="fas fa-gavel"></i>
+          {{ section.settings.primary_button_label }}
+        </a>
+      {% endif %}
+      {% if section.settings.secondary_button_label != blank %}
+        <a href="{{ section.settings.secondary_button_link }}" class="btn-secondary">
+          <i class="fas fa-file-alt"></i>
+          {{ section.settings.secondary_button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Foreigners Rights Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Accompagnement Administratif - Droit des Étrangers"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Service professionnel et sécurisé pour vous aider à constituer vos dossiers sans prendre de risques juridiques. Nous vous assistons dans la constitution, la numérisation et la transmission de vos dossiers auprès des autorités compétentes."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary Button Label",
+      "default": "Consultation Gratuite"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link",
+      "default": "#contact"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary Button Label",
+      "default": "Nos Services"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link",
+      "default": "#services"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Foreigners Rights Hero",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %} 

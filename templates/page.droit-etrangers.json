@@ -5,10 +5,10 @@
       "settings": {}
     },
     "hero_section": {
-      "type": "hero",
+      "type": "foreigners-hero",
       "settings": {
         "title": "Accompagnement Administratif - Droit des Étrangers",
-        "subtitle": "Service professionnel et sécurisé pour vous aider à constituer vos dossiers sans prendre de risques juridiques.",
+        "subtitle": "Service professionnel et sécurisé pour vous aider à constituer vos dossiers sans prendre de risques juridiques. Nous vous assistons dans la constitution, la numérisation et la transmission de vos dossiers auprès des autorités compétentes.",
         "primary_button_label": "Consultation Gratuite",
         "primary_button_link": "#contact",
         "secondary_button_label": "Nos Services",
@@ -16,19 +16,19 @@
       }
     },
     "services_section": {
-      "type": "services",
+      "type": "foreigners-services",
       "settings": {
         "title": "Nos Services Administratifs",
-        "subtitle": "Assistance complète pour vos démarches administratives en droit des étrangers."
+        "subtitle": "Nous vous assistons dans la constitution, la numérisation et la transmission de vos dossiers auprès des autorités compétentes (préfecture, ANEF, France-Visas, etc.)."
       },
       "blocks": {
         "service_1": {
           "type": "service",
           "settings": {
-            "icon": "fa-solid fa-file-alt",
+            "icon": "fas fa-file-alt",
             "title": "Préparation des Documents",
             "description": "Constitution complète de votre dossier selon les listes officielles des préfectures.",
-            "features": "Vérification de complétude du dossier\nClassement et numérisation\nTraductions officielles\nSuivi de l'avancement",
+            "features": "Vérification de complétude du dossier\nClassement et numérisation\nTraductions officielles (via traducteurs assermentés)\nSuivi de l'avancement du dossier",
             "cta_label": "En savoir plus",
             "cta_link": "#contact"
           }
@@ -36,10 +36,10 @@
         "service_2": {
           "type": "service",
           "settings": {
-            "icon": "fa-solid fa-laptop",
-            "title": "Démarches en Ligne",
+            "icon": "fas fa-laptop",
+            "title": "Aide aux Démarches en Ligne",
             "description": "Assistance pour la création de comptes et les téléprocédures officielles.",
-            "features": "Aide création comptes ANEF\nAccès France-Visas\nPrise de rendez-vous préfecture\nSuivi administratif",
+            "features": "Aide à la création de comptes ANEF\nAccès à France-Visas\nPrise de rendez-vous préfecture\nSuivi administratif de l'avancement",
             "cta_label": "Consulter",
             "cta_link": "#contact"
           }
@@ -47,10 +47,10 @@
         "service_3": {
           "type": "service",
           "settings": {
-            "icon": "fa-solid fa-exchange-alt",
+            "icon": "fas fa-exchange-alt",
             "title": "Changement de Statut",
             "description": "Constitution de dossiers pour vos changements de situation administrative.",
-            "features": "Étudiant vers salarié\nVie privée et familiale\nRenouvellement titres séjour\nRegroupement familial",
+            "features": "Changement étudiant vers salarié\nVie privée et familiale\nRenouvellement de titres de séjour\nRegroupement familial",
             "cta_label": "Découvrir",
             "cta_link": "#contact"
           }
